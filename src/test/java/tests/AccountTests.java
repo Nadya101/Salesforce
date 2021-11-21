@@ -1,6 +1,5 @@
 package tests;
 
-import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
@@ -9,10 +8,6 @@ public class AccountTests extends BaseTest {
     public static final String login = "nadya101-p6wc@force.com";
     public static final String password = "Gq2KPsXekAb*ySd%";
 
-    public String getAccountName(){
-        return driver.findElement(By.xpath("//*[contains(@class,'custom-truncate uiOutputText')]")).getText();
-    }
-
     @Test
     public void createAccountTest() {
         loginPage.openLoginPage()
@@ -20,8 +15,8 @@ public class AccountTests extends BaseTest {
                 .fillInPasswordField(password)
                 .clickLoginButton();
         newAccountModalPage.openNewAccountModal()
-                .createAccount("Account 19", "www.101.ua", "This is my account",
+                .createAccount("Account 23", "www.101.ua", "This is my account",
                         "Ukraina");
-       Assert.assertEquals(getAccountName(), "Account 19");
+       Assert.assertEquals(accountPage.getAccountName() , "Account 23");
     }
 }

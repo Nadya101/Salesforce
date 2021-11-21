@@ -3,24 +3,22 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class HomePage extends BasePage {
-    WebDriver driver;
-    public static final String HOME_PAGE_URL = "https://dms4.lightning.force.com/lightning/page/home";
-    String textField = "//*[contains(text(), '%s')]/ancestor::force-highlights-details-item";
+import java.util.concurrent.TimeUnit;
 
+public class AccountPage extends BasePage {
 
-    public HomePage(WebDriver driver) {
+    public AccountPage(WebDriver driver) {
         super(driver);
     }
 
-    public HomePage openHomePage() {
+    public AccountPage openHomePage() {
         openPage(HOME_PAGE_URL);
         return this;
     }
 
-    String accountName_xpath = "//*[contains(@class,'custom-truncate uiOutputText')]";
-
     public String getAccountName() {
+       waitForElementLocated(By.xpath(accountName_xpath),15);
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         return driver.findElement(By.xpath(accountName_xpath)).getText();
     }
 

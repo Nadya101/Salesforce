@@ -7,9 +7,6 @@ import org.openqa.selenium.WebDriver;
 
 public class NewAccountModalPage extends BasePage {
 
-    public static final String NEW_ACCOUNT_URL = "https://dms4.lightning.force.com/lightning/o/Account/new";
-    public By SAVE_MODAL_BUTTON = By.xpath("//*[contains(@class,'forceActionButton')]//*[text()='Save']");
-
     public NewAccountModalPage(WebDriver driver) {
         super(driver);
     }
@@ -24,13 +21,14 @@ public class NewAccountModalPage extends BasePage {
         return this;
     }
 
-    public HomePage createAccount(String accountName, String website, String description, String billingAddress) {
+    public AccountPage createAccount(String accountName, String website, String description, String billingAddress) {
+        waitForElementLocated(By.xpath(INPUT_ACCOUNT_NAME_XPATH), 10);
         new InputField(driver, "Account Name").writeText(accountName);
         new InputField(driver, "Website").writeText(website);
         new TextAreaField(driver, "Description").writeText(description);
         new TextAreaField(driver, "Billing Street").writeText(billingAddress);
         clickSave();
-        return new HomePage(driver);
+        return new AccountPage(driver);
     }
 
 }
