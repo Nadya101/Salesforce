@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class TextAreaField {
+    public static final String TEXT_AREA_XPATH = "//*[contains(text(),'%s')]/ancestor::div[contains(@class,'uiInputTextArea')]//textarea";
 
     WebDriver driver;
     String label;
@@ -12,7 +13,6 @@ public class TextAreaField {
         this.driver = driver;
         this.label = label;
     }
-    public static final String TEXT_AREA_XPATH = "//*[contains(text(),'%s')]/ancestor::div[contains(@class,'uiInputTextArea')]//textarea";
 
     public void writeText(String text) {
         driver.findElement(By.xpath(String.format(TEXT_AREA_XPATH, label))).sendKeys(text);
